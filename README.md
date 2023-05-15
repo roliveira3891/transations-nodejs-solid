@@ -1,9 +1,9 @@
-# Código exemplo principios SOLID em NODEjS
+# Código - Principios SOLID em NODEjS
 
 
 ## Setup
 
-Either you can use this template to create a new repository from within the Github user interface or clone the repo locally. 
+Código baseado nos videos do Rodrigo Branas. Façam bom aproveito :) !
 
 
 ### Clone o Repositório
