@@ -3,7 +3,8 @@
 
 ## Setup
 
-Código baseado nos videos do Rodrigo Branas. Façam bom aproveito :) !
+Código baseado no video do Rodrigo Branas, https://www.youtube.com/watch?v=tetVY6jmlnM. Façam bom aproveito :) !
+
 
 
 ### Clone o Repositório

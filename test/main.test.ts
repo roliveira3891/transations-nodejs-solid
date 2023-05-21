@@ -1,33 +1,38 @@
-import axios from "axios";
+import CreateTransaction from "../src/application/CreateTransaction";
+import { v4 as uuidv4 } from 'uuid';
+import GetTransaction from "../src/application/GetTransaction";
+import TransactionDatabaseRepository from "../src/infra/repository/TransactionDatatabaseRepository";
+import postgresSQLAdapter from "../src/infra/database/PostgreSQLAdatper";
+import TransactionMemoryRepository from "../src/infra/repository/TransactionMemoryRepository";
 
-test("Deve Criar uma transação", async function(){
-    const code = `${Math.floor(Math.random()*1000)}`
-    await axios({
-        url: "http://localhost:3000/transactions",
-        method: "post",
-        data: {
-            code,
-            amount: 1000,
-            numberInstallments: 12,
-            paymentMethod: "credit_card"
-      
-        }
-    })
+test("Deve Criar uma transação", async function () {
+    const connection = new postgresSQLAdapter()
+    //const transactionRepository = new TransactionDatabaseRepository(connection)
+    const transactionRepository = new TransactionMemoryRepository() 
+    
+    const code = uuidv4()
+
+    const input = {
+        code,
+        amount: 1000,
+        numberInstallments: 12,
+        paymentMethod: "credit_card"
+    }
+
+    const createTransaction = new CreateTransaction(transactionRepository)
+    await createTransaction.execute(input)
 
 
-    const response = await axios({
-        url: `http://localhost:3000/transactions/${code}`,
-        method: "get"
-    })
+    const getTransasction = new GetTransaction(transactionRepository)
+    const transaction = await getTransasction.execute(code)
 
-    const transaction = response.data
 
-    // console.log('->', transaction)
-   
     expect(transaction.code).toBe(code)
     expect(transaction.amount).toBe(1000)
-    expect(transaction.payment_method).toBe("credit_card")
+    expect(transaction.paymentMethod).toBe("credit_card")
     expect(transaction.installments).toHaveLength(12)
     expect(transaction.installments[0].amount).toBe(83.33)
     expect(transaction.installments[11].amount).toBe(83.37)
+
+    await connection.close()
 })
