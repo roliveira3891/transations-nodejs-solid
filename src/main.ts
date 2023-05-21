@@ -4,7 +4,7 @@ import postgresSQLAdapter from './infra/database/PostgreSQLAdatper'
 import TransactionDatabaseRepository from './infra/repository/TransactionDatatabaseRepository'
 import TransactionMemoryRepository from './infra/repository/TransactionMemoryRepository'
 
-const connection = new postgresSQLAdapter()
+//const connection = new postgresSQLAdapter()
 //const transactionRepository = new TransactionDatabaseRepository(connection)
 const transactionRepository = new TransactionMemoryRepository()
 

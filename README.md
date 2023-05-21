@@ -7,6 +7,7 @@ Código baseado no video do Rodrigo Branas, https://www.youtube.com/watch?v=tetV
 
 
 
+
 ### Clone o Repositório
 ```sh
 git clone https://github.com/roliveira3891/transations-nodejs-solid
@@ -16,6 +17,14 @@ git remote remove origin
 ```
 
 ### Como executar
+
+Rode o docker compose para baixar o banco de dados
+
+```sh
+docker compose up 
+```
+
+
 <!-- Once done, `cd` into the cloned repo and install the dependencies from the npm registry. I personally use npm, however you can use `yarn` or `pnpm`. -->
 
 
